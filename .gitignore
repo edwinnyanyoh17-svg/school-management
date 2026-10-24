@@ -1,0 +1,17 @@
+# Local PHP session data and admission documents can contain private information.
+/.runtime_sessions/
+/private/admissions/
+
+# Keep environment credentials and uploaded staff portraits out of source control.
+/.env
+/.env.*
+!/.env.example
+/images/*
+!/images/.htaccess
+!/images/ATTRIBUTION.md
+!/images/schoolchildren-classroom.jpg
+
+# Local development and operating-system files.
+*.log
+Thumbs.db
+Desktop.ini

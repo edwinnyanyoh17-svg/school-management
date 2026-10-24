@@ -1,0 +1,20 @@
+Options -Indexes
+DirectoryIndex school-website.php index.php index.html
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set X-Permitted-Cross-Domain-Policies "none"
+    Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(?:config|database|scripts|private|\.runtime_sessions|\.git)(?:/|$) - [F,END]
+    RewriteRule (^|/)\.(?!well-known(?:/|$)) - [F,END]
+</IfModule>
+
+<FilesMatch "^(README\.md|schema\.sql|upgrade_existing\.sql|dashboard-view\.html|\.env.*|composer\.(json|lock))$">
+    Require all denied
+</FilesMatch>
